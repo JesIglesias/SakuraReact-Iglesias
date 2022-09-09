@@ -1,10 +1,16 @@
 import React from "react";
 import productos from "../data/productos";
 
-function Item({ productos }) {
+function Item({ producto }) {
   return (
-    <div>
-      <h1>{productos.id}</h1>
+    <div className="text-center">
+      <p className="text-uppercase fs-5 fw-bold">
+        Producto: {producto.producto}
+      </p>
+      <p className="text-uppercase">Precio: ${producto.precio}</p>
+      <p className="text-uppercase ">Stock:{producto.stock}</p>
+      <hr />
+      <br />
     </div>
   );
 }

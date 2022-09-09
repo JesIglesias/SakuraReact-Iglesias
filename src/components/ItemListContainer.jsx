@@ -14,7 +14,7 @@ function ItemListContainer({ greeting }) {
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    getProductos().then((respuestaPromise) => {
+    getProductos().then((respuestaPromise) => { 
       console.log(respuestaPromise);
       setProductos(respuestaPromise);
     });
