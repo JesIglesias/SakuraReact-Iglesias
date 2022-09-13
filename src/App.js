@@ -1,7 +1,8 @@
 // import "./App.css";
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
-import ItemCount from "./components/ItemCount";
+
+import ItemDetailContainer from "./components/ItemDetailContainer";
 
 function App() {
   return (
@@ -9,7 +10,8 @@ function App() {
       <header className="header">
         <NavBar />
         <ItemListContainer greeting="Bienvenido a la tienda" />
-        <ItemCount stock={3} initial={1} />
+
+        <ItemDetailContainer />
       </header>
     </div>
   );

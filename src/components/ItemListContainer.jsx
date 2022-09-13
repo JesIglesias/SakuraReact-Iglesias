@@ -14,16 +14,23 @@ function ItemListContainer({ greeting }) {
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    getProductos().then((respuestaPromise) => { 
+    getProductos().then((respuestaPromise) => {
       console.log(respuestaPromise);
       setProductos(respuestaPromise);
     });
   }, []);
 
   return (
-    <div>
-      <div>{greeting}</div>;
-      <ItemList productos={productos} />;
+    // <div>
+    //   <div>{greeting}</div>;
+    //   <ItemList productos={productos} />;
+    // </div>
+    <div className="container  ">
+      <div className="row">
+        <div className="col-md-3">
+          <ItemList productos={productos} />;
+        </div>
+      </div>
     </div>
   );
 }

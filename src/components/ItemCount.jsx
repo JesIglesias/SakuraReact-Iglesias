@@ -20,8 +20,7 @@ const ItemCount = (props) => {
 
   return (
     <div>
-      <div className="text-center">
-        <h2>ItemCount</h2>
+      <div>
         <div>
           <button
             type="button"
