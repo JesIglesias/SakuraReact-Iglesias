@@ -1,23 +1,28 @@
 import productosBD from "../data/productos";
 import { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
+import { useParams } from "react-router-dom";
 
-function getProducto() {
+function getProducto(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(productosBD);
+      const productoPedido = productosBD.find((producto) => {
+        return parseInt(id) === producto.id;
+      });
+      resolve(productoPedido);
     }, 2000);
   });
 }
 
 function ItemDetailContainer() {
   const [producto, setProducto] = useState([]);
+  const { itemid } = useParams();
 
   useEffect(() => {
-    getProducto().then((respuestaPromise) => {
-      setProducto(respuestaPromise[0]);
+    getProducto(itemid).then((respuestaPromise) => {
+      setProducto(respuestaPromise);
     });
-  }, []);
+  }, [itemid]);
 
   return (
     <div className="container ">

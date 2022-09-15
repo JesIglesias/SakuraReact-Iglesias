@@ -1,24 +1,32 @@
 import productosBD from "../data/productos";
 import { useEffect, useState } from "react";
 import ItemList from "./ItemList";
+import { useParams } from "react-router-dom";
 
-function getProductos() {
+function getProductos(categoryid) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(productosBD);
+      if (categoryid) {
+        const arrayFiltrado = productosBD.filter((producto) => {
+          return producto.categoria === categoryid;
+        });
+        resolve(arrayFiltrado);
+      } else {
+        resolve(productosBD);
+      }
     }, 2000);
   });
 }
 
 function ItemListContainer({ greeting }) {
   const [productos, setProductos] = useState([]);
+  const { categoryid } = useParams();
 
   useEffect(() => {
-    getProductos().then((respuestaPromise) => {
-      console.log(respuestaPromise);
+    getProductos(categoryid).then((respuestaPromise) => {
       setProductos(respuestaPromise);
     });
-  }, []);
+  }, [categoryid]);
 
   return (
     // <div>

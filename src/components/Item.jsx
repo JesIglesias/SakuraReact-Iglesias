@@ -1,5 +1,6 @@
 import React from "react";
 import productos from "../data/productos";
+import { Link } from "react-router-dom";
 
 function Item({ producto }) {
   return (
@@ -17,15 +18,15 @@ function Item({ producto }) {
       <div className="card">
         <img
           src={producto.imagen}
-          class="card-img-top"
+          className="card-img-top"
           alt="{producto.producto}"
         />
         <div className="card-body">
           <h5 className="card-title">{producto.producto}</h5>
           <p className="card-text">Precio: ${producto.precio}</p>
-          <a href="#!" className="btn btn-primary">
+          <Link to={`/producto/${producto.id}`} className="btn btn-primary">
             Ver más
-          </a>
+          </Link>
         </div>
       </div>
     </div>
