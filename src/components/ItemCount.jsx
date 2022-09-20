@@ -14,8 +14,8 @@ const ItemCount = (props) => {
       setCount(count - 1);
     }
   }
-  function handleAgregar() {
-    alert("Agregaste" + " " + count + " " + " productos al carrito");
+  function handleClick() {
+    props.onAdd(count);
   }
 
   return (
@@ -39,11 +39,7 @@ const ItemCount = (props) => {
           </button>
         </div>
         <div>
-          <button
-            type="button"
-            className="btn btn-light"
-            onClick={handleAgregar}
-          >
+          <button type="button" className="btn btn-light" onClick={handleClick}>
             Agregar al carrito
           </button>
         </div>

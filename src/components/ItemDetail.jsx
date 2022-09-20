@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import productos from "../data/productos";
 import ItemCount from "./ItemCount";
+import { Link } from "react-router-dom";
 
 function ItemDetail({ producto }) {
+  const [isInCart, setIsInCart] = useState(false);
+
+  function onAdd(count) {
+    console.log(`agregaste al carrito ${count} items`);
+    setIsInCart(true);
+  }
+
   return (
     <div className="text-center">
       {/* <p className="text-uppercase fs-5 fw-bold">
@@ -25,7 +33,7 @@ function ItemDetail({ producto }) {
           <h5 className="card-title">{producto.producto}</h5>
           <p className="card-text">Precio: ${producto.precio}</p>
           <p className="card-text">{producto.descripcion}</p>
-          <select class="form-select my-4 border">
+          <select className="form-select my-4 border">
             <option selected>Seleccioná tu talle</option>
             <option value="1">S</option>
             <option value="2">M</option>
@@ -33,7 +41,13 @@ function ItemDetail({ producto }) {
             <option value="3">XL</option>
             <option value="3">XXL</option>
           </select>
-          <ItemCount stock={producto.stock} initial={1} />
+          {isInCart ? (
+            <Link to={"/cart"} className="btn btn-primary">
+              Ir al carrito
+            </Link>
+          ) : (
+            <ItemCount stock={producto.stock} initial={1} onAdd={onAdd} />
+          )}
         </div>
       </div>
     </div>
