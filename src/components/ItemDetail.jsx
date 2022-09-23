@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import productos from "../data/productos";
+import { useState } from "react";
+
 import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
+import useCartContext from "../store/CartContext";
 
 function ItemDetail({ producto }) {
   const [isInCart, setIsInCart] = useState(false);
+  const { addToCart } = useCartContext();
 
   function onAdd(count) {
-    console.log(`agregaste al carrito ${count} items`);
     setIsInCart(true);
+    addToCart(producto, count);
+    console.log("agregado al cart;", producto, count);
   }
 
   return (
@@ -41,6 +44,7 @@ function ItemDetail({ producto }) {
             <option value="3">XL</option>
             <option value="3">XXL</option>
           </select>
+
           {isInCart ? (
             <Link to={"/cart"} className="btn btn-primary">
               Ir al carrito
