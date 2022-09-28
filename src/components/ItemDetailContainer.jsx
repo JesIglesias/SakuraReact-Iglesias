@@ -15,7 +15,7 @@ function getProducto(id) {
 }
 
 function ItemDetailContainer() {
-  const [producto, setProducto] = useState([]);
+  const [producto, setProducto] = useState();
   const { itemid } = useParams();
 
   useEffect(() => {
@@ -25,9 +25,9 @@ function ItemDetailContainer() {
   }, [itemid]);
 
   return (
-    <div className="container ">
+    <div className="container my-4">
       <div className="row">
-        <div className="col-md-4">
+        <div className="col-lg-4 ">
           <ItemDetail producto={producto} />;
         </div>
       </div>
