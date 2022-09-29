@@ -1,25 +1,14 @@
-import productosBD from "../data/productos";
+import { getItem as getProductos } from "../data";
 import { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
 import { useParams } from "react-router-dom";
-
-function getProducto(id) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const productoPedido = productosBD.find((producto) => {
-        return parseInt(id) === producto.id;
-      });
-      resolve(productoPedido);
-    }, 2000);
-  });
-}
 
 function ItemDetailContainer() {
   const [producto, setProducto] = useState();
   const { itemid } = useParams();
 
   useEffect(() => {
-    getProducto(itemid).then((respuestaPromise) => {
+    getProductos(itemid).then((respuestaPromise) => {
       setProducto(respuestaPromise);
     });
   }, [itemid]);

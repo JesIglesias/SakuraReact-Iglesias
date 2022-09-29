@@ -40,6 +40,29 @@ export function CartContexProvider({ children }) {
     return cart.some((itemCart) => itemCart.id === id);
   };
 
+  // CORREGIR: MUESTRA 0
+  const calcItemCant = () => {
+    let itemCant = cart.map((item) => item.cant);
+    return itemCant.reduce(
+      (valorAnterior, valorActual) => valorAnterior + valorActual,
+      0
+    );
+  };
+
+  // CORREGIR
+  const calcTotalPorItem = (id) => {
+    let totalItem = cart.map((item) => item.id).indexOf(id);
+    return cart.precio * cart.cant;
+  };
+
+  // CORREGIR
+  const calcTotalPrice = () => {
+    let totalPrice = cart.map((item) => calcTotalPorItem(item.id));
+    return totalPrice.reduce(
+      (valorAnterior, valorActual) => valorAnterior + valorActual
+    );
+  };
+
   const contextFunction = () => console.log("Contexto");
   return (
     <CartContext.Provider
@@ -50,6 +73,10 @@ export function CartContexProvider({ children }) {
         removeFromCart,
         isInCart,
         clearCart,
+
+        calcItemCant,
+        calcTotalPorItem,
+        calcTotalPrice,
       }}
     >
       {children}

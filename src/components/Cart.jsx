@@ -3,7 +3,8 @@ import useCartContext from "../store/CartContext";
 import { Link } from "react-router-dom";
 
 function Cart() {
-  const { cart, removeFromCart, clearCart, cantInCart } = useCartContext();
+  const { cart, removeFromCart, clearCart, calcTotalPorItem } =
+    useCartContext();
 
   if (cart.length === 0) {
     return (
@@ -32,6 +33,7 @@ function Cart() {
           );
         })}
         <button onClick={clearCart}>Vaciar todo el carrito</button>
+        {/* <button onClick={calcTotalPorItem}>Checkout</button>  */}
       </div>
     );
   }
