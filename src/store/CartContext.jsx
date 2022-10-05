@@ -1,6 +1,5 @@
 import { createContext } from "react";
 import { useContext, useState } from "react";
-import productos from "../data/productos";
 
 const CartContext = createContext();
 const useCartContext = () => useContext(CartContext);
@@ -51,8 +50,9 @@ export function CartContexProvider({ children }) {
 
   // CORREGIR
   const calcTotalPorItem = (id) => {
-    let totalItem = cart.map((item) => item.id).indexOf(id);
-    return cart.precio * cart.cant;
+    let totalItem = cart.find((item) => item.id === id);
+    let total = totalItem.precio * totalItem.cant;
+    return total;
   };
 
   // CORREGIR

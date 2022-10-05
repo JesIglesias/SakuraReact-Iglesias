@@ -15,8 +15,8 @@ function ItemDetail({ producto }) {
 
   if (!producto) {
     return (
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
+      <div className="spinner-border" role="status">
+        <span className="visually-hidden">Loading...</span>
       </div>
     );
   } else {
@@ -39,8 +39,8 @@ function ItemDetail({ producto }) {
                   <option value="1">S</option>
                   <option value="2">M</option>
                   <option value="3">L</option>
-                  <option value="3">XL</option>
-                  <option value="3">XXL</option>
+                  <option value="4">XL</option>
+                  <option value="5">XXL</option>
                 </select>
 
                 {isInCart ? (
