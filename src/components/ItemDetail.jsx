@@ -15,36 +15,32 @@ function ItemDetail({ producto }) {
 
   if (!producto) {
     return (
-      <div className="spinner-border" role="status">
-        <span className="visually-hidden">Loading...</span>
+      <div class="text-center">
+        <div className="spinner-border text-success m-5" role="status">
+          <span className="visually-hidden ">Loading...</span>
+        </div>
       </div>
     );
   } else {
     return (
-      <div className="container m-5 p-4">
-        <div className="row">
-          <div className="text-center ">
-            <div className="card">
+      <div className="container m-3 p-3">
+        <div className="row justify-content-evenly">
+          <div className=" col-6 text-center">
+            <div className="card border border-success p-2 mb-2 border-opacity-25 shadow ">
               <img
                 src={producto.imagen}
-                className="card-img-top"
+                className="card-img-top rounded img-fluid"
                 alt="{producto.producto}"
               />
               <div className="card-body">
-                <h5 className="card-title">{producto.producto}</h5>
-                <p className="card-text">Precio: ${producto.precio}</p>
+                <h5 className="card-title text-success fs-5 fw-bold fst-italic">
+                  {producto.producto}
+                </h5>
+                <p className="card-text fw-bold">${producto.precio}</p>
                 <p className="card-text">{producto.descripcion}</p>
-                <select className="form-select my-4 border">
-                  <option selected>Seleccioná tu talle</option>
-                  <option value="1">S</option>
-                  <option value="2">M</option>
-                  <option value="3">L</option>
-                  <option value="4">XL</option>
-                  <option value="5">XXL</option>
-                </select>
 
                 {isInCart ? (
-                  <Link to={"/cart"} className="btn btn-primary">
+                  <Link to={"/cart"} className="btn btn-success opacity-75">
                     Ir al carrito
                   </Link>
                 ) : (

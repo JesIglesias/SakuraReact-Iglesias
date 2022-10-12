@@ -14,9 +14,9 @@ function ItemDetailContainer() {
   }, [itemid]);
 
   return (
-    <div className="container my-4">
-      <div className="row">
-        <div className="col-lg-4 ">
+    <div className="container ">
+      <div className="row justify-content-evenly">
+        <div className="col-9 ">
           <ItemDetail producto={producto} />;
         </div>
       </div>
