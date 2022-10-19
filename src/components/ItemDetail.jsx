@@ -10,12 +10,11 @@ function ItemDetail({ producto }) {
   function onAdd(count) {
     setIsInCart(true);
     addToCart(producto, count);
-    console.log("agregado al cart;", producto, count);
   }
 
   if (!producto) {
     return (
-      <div class="text-center">
+      <div className="text-center">
         <div className="spinner-border text-success m-5" role="status">
           <span className="visually-hidden ">Loading...</span>
         </div>

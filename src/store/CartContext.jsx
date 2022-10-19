@@ -1,5 +1,8 @@
 import { createContext } from "react";
 import { useContext, useState } from "react";
+import { firestoreDB } from "../data";
+import { collection, Timestamp, addDoc } from "firebase/firestore/lite";
+import swal from "sweetalert";
 
 const CartContext = createContext();
 const useCartContext = () => useContext(CartContext);
@@ -39,7 +42,6 @@ export function CartContexProvider({ children }) {
     return cart.some((itemCart) => itemCart.id === id);
   };
 
-  // CORREGIR: MUESTRA 0
   const calcItemCant = () => {
     let itemCant = cart.map((item) => item.cant);
     return itemCant.reduce(
@@ -48,20 +50,35 @@ export function CartContexProvider({ children }) {
     );
   };
 
-  // CORREGIR
   const calcTotalPorItem = (id) => {
     let totalItem = cart.find((item) => item.id === id);
     let total = totalItem.precio * totalItem.cant;
     return total;
   };
 
-  // CORREGIR
   const calcTotalPrice = () => {
     let totalPrice = cart.map((item) => calcTotalPorItem(item.id));
     return totalPrice.reduce(
       (valorAnterior, valorActual) => valorAnterior + valorActual
     );
   };
+
+  async function getOrdenDeCompra(ordenData) {
+    const compraTimestamp = Timestamp.now();
+    const ordenDate = {
+      ...ordenData,
+      date: compraTimestamp,
+    };
+    const miColec = collection(firestoreDB, "ordenesDeCompras");
+    const ordenDoc = await addDoc(miColec, ordenDate);
+
+    swal({
+      title: "¡Gracias por tu compra!",
+      text: `El número de compra es: ${ordenDoc.id}`,
+      icon: "success",
+      button: "Ok",
+    });
+  }
 
   const contextFunction = () => console.log("Contexto");
   return (
@@ -73,10 +90,10 @@ export function CartContexProvider({ children }) {
         removeFromCart,
         isInCart,
         clearCart,
-
         calcItemCant,
         calcTotalPorItem,
         calcTotalPrice,
+        getOrdenDeCompra,
       }}
     >
       {children}

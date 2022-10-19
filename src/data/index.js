@@ -9,8 +9,6 @@ import {
   collection,
   getDocs,
   setDoc,
-  Timestamp,
-  addDoc,
 } from "firebase/firestore/lite";
 
 // Your web app's Firebase configuration
@@ -25,9 +23,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const firestoreDB = getFirestore(app);
-
-export default firestoreDB;
+export const firestoreDB = getFirestore(app);
 
 export async function getAllItems() {
   const miColec = collection(firestoreDB, "productos");
@@ -142,16 +138,4 @@ export async function dataToFirebase() {
         console.log("Error adding document:", err);
       });
   });
-}
-
-export async function createOrdenDeCompra(ordenData) {
-  const compraTimestamp = Timestamp.now();
-  const ordenDate = {
-    ...ordenData,
-    date: compraTimestamp,
-  };
-  const miColec = collection(firestoreDB, "ordenesDeCompras");
-  const ordenDoc = await addDoc(miColec, ordenDate);
-
-  console.log("orden de compra id:", ordenDoc.id);
 }

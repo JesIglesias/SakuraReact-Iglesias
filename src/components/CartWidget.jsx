@@ -9,7 +9,7 @@ function CartWidget() {
   return (
     <div>
       <Link className="position-relative" to="/cart">
-        <FontAwesomeIcon icon={faCartShopping} />
+        <FontAwesomeIcon icon={faCartShopping} className="text-dark fs-5" />
         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
           {calcItemCant() > 0 ? calcItemCant() : ""}
         </span>

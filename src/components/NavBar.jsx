@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function NavBar() {
   return (
     <div className="container  ">
-      <nav className="navbar  navbar-expand-lg bg-success bg-opacity-75 fixed-top ">
+      <nav className="navbar  navbar-expand-lg bg-success bg-opacity-50 fixed-top ">
         <div className="container-fluid">
           <Link className="navbar-brand fw-semibold fs-4" to="/">
             Sakura
